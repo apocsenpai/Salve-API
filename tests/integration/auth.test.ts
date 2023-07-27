@@ -103,6 +103,8 @@ describe('POST /auth/sign-in', () => {
 		it('should respond with status 401 when username doesnt exists', async () => {
 			const validUser = generateValidUser()
 
+			await createUser(validUser)
+
 			const body = generateCredentialsWithInvalidLogin(
 				faker.internet.displayName(),
 				validUser.password
@@ -116,6 +118,8 @@ describe('POST /auth/sign-in', () => {
 		it('should respond with status 401 when email doesnt exists', async () => {
 			const validUser = generateValidUser()
 
+			await createUser(validUser)
+
 			const body = generateCredentialsWithInvalidLogin(
 				faker.internet.email(),
 				validUser.password
@@ -128,6 +132,8 @@ describe('POST /auth/sign-in', () => {
 
 		it('should respond with status 401 when password is wrong', async () => {
 			const validUser = generateValidUser()
+
+			await createUser(validUser)
 
 			const body = generateCredentialsWithInvalidLogin(
 				validUser.email,

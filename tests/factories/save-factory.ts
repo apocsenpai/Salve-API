@@ -81,8 +81,6 @@ export async function createRequestedInProgressSave(profileId: number) {
 
 	const { id: saveId } = await createSave(profileId)
 
-	console.log(providerId)
-
 	return prisma.save.update({
 		where: {
 			id: saveId,

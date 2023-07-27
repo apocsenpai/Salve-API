@@ -1,0 +1,21 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.pg
+    container_name: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - ./.env.test
+
+  api-test:
+    container_name: api-test
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env.test

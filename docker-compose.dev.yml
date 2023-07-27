@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgis/postgis
+    container_name: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - .env.development
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+
+  api:
+    container_name: api
+    build: ./
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - .env.development
+
+volumes:
+  postgres-volume:

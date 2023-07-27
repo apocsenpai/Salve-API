@@ -6,7 +6,9 @@
     "moduleResolution": "Node",
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "ts-node": {
